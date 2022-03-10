@@ -1,0 +1,11 @@
+.navbar{
+background-color: red;
+justify-content: space-between;
+align-content: space-between;
+}
+img{
+    width: 160px;
+    height: 100px;
+    margin: 5px;
+    border-radius: 45%;
+}

@@ -1,0 +1,10 @@
+.hero{
+    background-color: darksalmon;
+}
+.hero-text{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
