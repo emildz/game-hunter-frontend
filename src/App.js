@@ -4,8 +4,8 @@ import Navbar from "./components/common/Navbar";
 import Hero from "./components/home/Hero";
 import Main from "./components/Main";
 import Footer from "./components/common/Footer";
-// import { Layout } from "antd";
-// import { CreateGame } from './components/CreateGame'
+import { Layout } from "antd";
+import { CreateGame } from './components/CreateGame'
 
 function App() {
   return (

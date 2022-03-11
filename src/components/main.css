@@ -1,12 +1,13 @@
 .main{
     justify-content: space-around;
     display: flex;
+    background-color: #ec0800;
     gap: 30px;
 }
 .card{
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    background-color: darkorange;
-    border: 10px solid red;
+    background-color: rgb(255, 0, 0);
+    border: 10px solid black;
 }

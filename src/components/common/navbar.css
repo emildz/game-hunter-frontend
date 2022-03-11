@@ -1,11 +1,11 @@
 .navbar{
-background-color: red;
+background-color: #ec0800;
+display: flex;
 justify-content: space-between;
-align-content: space-between;
+align-items: center;
 }
 img{
     width: 160px;
     height: 100px;
     margin: 5px;
-    border-radius: 45%;
 }
