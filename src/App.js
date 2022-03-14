@@ -1,23 +1,26 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Navbar from "./components/common/Navbar";
-import Hero from "./components/home/Hero";
-import Main from "./components/Main";
-import Footer from "./components/common/Footer";
-import { Layout } from "antd";
-import { CreateGame } from './components/CreateGame'
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import  CreateGame  from './components/CreateGame'
+import Home from "./components/Home";
 
 function App() {
   return (
     <>
       <Router>
-        <Navbar />
-        <br />
-        <Hero />
-        <br />
-        <Main/>
-        <br />
-        <Footer/>
+        <Routes>
+        <Route
+              path="/"
+              element={
+                  <Home /> 
+                }
+            />
+        <Route
+              path="/CreateGame"
+              element={
+                  <CreateGame /> 
+                }
+            
+            />
         {/* <Layout.Header
           style={{
             position: "fixed",
@@ -31,6 +34,7 @@ function App() {
           <Route path="/" exact />
           {/* <Route path="/create-game" element={<CreateGame />} /> 
         </Routes> */}
+        </Routes>
       </Router>
     </>
   );
