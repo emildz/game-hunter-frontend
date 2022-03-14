@@ -22,6 +22,7 @@ export default function Main() {
           <div className="games-container">
             {games.map((game) => {
               return (
+                <div key={game.id}>
                 <Card
                   className="card"
                   title={game.name}
@@ -33,6 +34,7 @@ export default function Main() {
                   <p>Time: {game.time}</p>
                   <p>Number of Players: {game.playerCount}</p>
                 </Card>
+                </div>
               );
             })}
           </div>

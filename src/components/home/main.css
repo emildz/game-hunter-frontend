@@ -9,6 +9,7 @@
 .games-container {
     display: flex;
     flex-flow: row wrap;
+    gap: 20px;
 }
 
 .ant-card-head-title {

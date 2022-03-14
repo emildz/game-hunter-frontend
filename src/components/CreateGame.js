@@ -1,6 +1,8 @@
 import { Modal, Form, Button, Input, DatePicker } from "antd";
+import { Footer } from "antd/lib/layout/layout";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./common/Navbar";
 
 const style = {
   position: "absolute",
@@ -17,125 +19,127 @@ const style = {
 const CreateGame = () => {
   const [name, setName] = useState("");
   const [sport, setSport] = useState("");
-  const [capacity, setCapacity] = useState(0);
-  const [address, setAddress] = useState("");
+  const [playerCount, setPlayerCount] = useState("");
+  const [location, setLocation] = useState("");
   const [date, setDate] = useState("");
-  const [description, setDescription] = useState("");
+  const [time, setTime] = useState("");
   const [open, setOpen] = useState(false);
-
+  const [game, setGame] = useState();
+  // game and setGame
   const navigate = useNavigate();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [isOpen, setIsOPen] = useState(false);
 
-  const handleForm = async (e) => {
+  const handleForm = (e) => {
     e.preventDefault();
-    //   fetch(user).then((post) =>
-    //     CreateGame { name, sport, capacity, address, date, description },
-    //   );
-    //  fetch post
-    handleOpen();
+    fetch("https://gamehunter-db.uc.r.appspot.com/newgame", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ sport, name, playerCount, date, location, time }),
+    })
+    .then(response => response.json())
+    .then(fetch('https://gamehunter-db.uc.r.appspot.com/sports').then())
+    .then( handleOpen())
+    .then( navigate("/"))
+    .catch(err => console.error(err))
+   
+   
   };
-  // const toggle = () => {
-  //   setIsOPen(!isOpen);
-  // };
-  // () => {
-  //   if(CreateGame.trim() === '') {
-  //     return
-  //   }
-  //   setLoading(true)
-  //   const taskObject = {
-  //     task: CreateGame,
-  //   }
-  //   fetch('', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(taskObject),
-  //   })
-  //     .then(() => {
-  //       setNewTask('')
 
-  //       fetch('')
-  //         .then(response => response.json())
-  //         .then(data => {
-  //           setTasks(data)
-  //           setLoading(false)
-  //         })
-  //     })
-  //     .catch(err => {
-  //       alert(err)
-  //       setLoading(false)
-  //     })
-  // }
-  // const handleForm = event => {
-  //   setNewTask(event.target.value)
-  // }
   return (
     <>
       <div>
-        <form onSubmit={handleForm}>
-          <input
-            style={{ display: "flex", flexDirection: "column", width: 220 }}
-            id="outlined-basic"
-            label="Name of Event"
-            variant="outlined"
-            name="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+        <Navbar />
+        <form
+          onSubmit={handleForm}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            padding: "20px",
+            maxWidth: 400,
+            margin: "0 auto",
+          }}
+        >
+          <label>
+            Game Name
+            <input
+              style={{ display: "flex", flexDirection: "column" }}
+              id="outlined-basic"
+              variant="outlined"
+              name="Game Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </label>
           &nbsp;
-          <input
-            style={{ display: "flex", flexDirection: "column", width: 220 }}
-            id="outlined-basic"
-            label="Sport"
-            variant="outlined"
-            required="true"
-            value={sport}
-            onChange={(e) => setSport(e.target.value)}
-          />
+          <label>
+            Type of Sport
+            <input
+              style={{ display: "flex", flexDirection: "column" }}
+              id="outlined-basic"
+              variant="outlined"
+              required={true}
+              value={sport}
+              onChange={(e) => setSport(e.target.value)}
+            />
+          </label>
           &nbsp; <br />
-          <input
-            style={{ display: "flex", flexDirection: "column", width: 220 }}
-            id="outlined-basic"
-            label="Number of Players"
-            variant="outlined"
-            required="true"
-            value={capacity}
-            onChange={(e) => setCapacity(e.target.value)}
-          />
-          &nbsp;
-          <input
-            style={{ display: "flex", flexDirection: "column", width: 220 }}
-            id="outlined-basic"
-            label="Location"
-            variant="outlined"
-            value={address}
-            required="true"
-            onChange={(e) => setAddress(e.target.value)}
-          />
+          <label>
+            Number Of Players
+            <input
+              style={{ display: "flex", flexDirection: "column" }}
+              id="outlined-basic"
+              variant="outlined"
+              required={true}
+              value={playerCount}
+              onChange={(e) => setPlayerCount(e.target.value)}
+            />
+            &nbsp;
+          </label>
+          <label>
+            Location
+            <input
+              style={{ display: "flex", flexDirection: "column" }}
+              id="outlined-basic"
+              variant="outlined"
+              value={location}
+              required={true}
+              onChange={(e) => setLocation(e.target.value)}
+            />
+            &nbsp; <br />
+          </label>
+          <label>
+            Date
+            <input
+              type="date"
+              id="outlined-basic"
+              variant="outlined"
+              required={true}
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+            />
+          </label>
+          <label> Time
+            <input
+              style={{ display: "flex", flexDirection: "column" }}
+              id="outlined-basic"
+             
+              variant="outlined"
+              type="time"
+              value={time}
+              onChange={(e) => setTime(e.target.value)}
+            />
+          </label>
           &nbsp; <br />
-          <input
-            style={{ display: "flex", flexDirection: "column", width: 220 }}
-            type="date"
-            id="outlined-basic"
-            variant="outlined"
-            required="true"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-          />
-          &nbsp;
-          <input
-            style={{ display: "flex", flexDirection: "column", width: 220 }}
-            id="outlined-basic"
-            label="Description"
-            variant="outlined"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          &nbsp; <br />
-          <button variant="contained" onClick={handleForm}>
+          <button
+            type="submit"
+            variant="contained"
+            onClick={() => handleForm()}
+          >
             Create Game
           </button>
           <Modal
@@ -170,11 +174,7 @@ const CreateGame = () => {
           wrapperCol={{
             span: 8,
           }}
-        >
-          <Form.Item label="Game Name">
-            <Input />
-          </Form.Item>
-        </Form>
+        ></Form>
       </div>
     </>
   );
