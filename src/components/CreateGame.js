@@ -31,6 +31,15 @@ const CreateGame = () => {
   const handleClose = () => setOpen(false);
   const [isOpen, setIsOPen] = useState(false);
 
+  const newGame = {
+    name: name,
+    sport: sport,
+    location: location,
+    date: date,
+    time: time,
+    playerCount: playerCount,
+  };
+
   const handleForm = (e) => {
     e.preventDefault();
     fetch("https://gamehunter-db.uc.r.appspot.com/newgame", {
@@ -38,15 +47,13 @@ const CreateGame = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ sport, name, playerCount, date, location, time }),
+      body: JSON.stringify(newGame),
     })
-    .then(response => response.json())
-    .then(fetch('https://gamehunter-db.uc.r.appspot.com/sports').then())
-    .then( handleOpen())
-    .then( navigate("/"))
-    .catch(err => console.error(err))
-   
-   
+      .then((response) => response.json())
+      .then(fetch("https://gamehunter-db.uc.r.appspot.com/sports").then())
+      .then(handleOpen())
+      .then(navigate("/"))
+      .catch((err) => console.error(err));
   };
 
   return (
@@ -123,11 +130,12 @@ const CreateGame = () => {
               onChange={(e) => setDate(e.target.value)}
             />
           </label>
-          <label> Time
+          <label>
+            {" "}
+            Time
             <input
               style={{ display: "flex", flexDirection: "column" }}
               id="outlined-basic"
-             
               variant="outlined"
               type="time"
               value={time}
@@ -138,7 +146,7 @@ const CreateGame = () => {
           <button
             type="submit"
             variant="contained"
-            onClick={() => handleForm()}
+            onClick={(e) => handleForm()}
           >
             Create Game
           </button>
