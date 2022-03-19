@@ -1,5 +1,4 @@
 import { Modal, Form, Button, Input, DatePicker } from "antd";
-import { Footer } from "antd/lib/layout/layout";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./common/Navbar";
@@ -57,8 +56,7 @@ const CreateGame = () => {
   };
 
   return (
-    <>
-      <div>
+      <div className="create-game-container">
         <Navbar />
         <form
           onSubmit={handleForm}
@@ -175,6 +173,7 @@ const CreateGame = () => {
         </form>
 
         <Form
+          
           layout="vertical"
           labelCol={{
             span: 8,
@@ -184,7 +183,6 @@ const CreateGame = () => {
           }}
         ></Form>
       </div>
-    </>
   );
 };
 

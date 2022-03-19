@@ -33,6 +33,11 @@ export default function Main() {
                   <p>Date: {game.date}</p>
                   <p>Time: {game.time}</p>
                   <p>Number of Players: {game.playerCount}</p>
+                  {/* <Button onClick={() => navigate("/CreateGame")} type="custom" shape="round" style={{ color: "black", fontWeight: 600, marginRight: 20
+    }}>
+          Create New Game
+        </Button> */}
+
                 </Card>
                 </div>
               );

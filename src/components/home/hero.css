@@ -2,14 +2,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url("../../../public/hero.jpeg");
+    background-image: url("../../../public/hockey-hero.jpg");
     background-size: cover;
     padding: 20px;
-    min-height: 400px;
+    min-height: 700px;
 }
 .hero-text{
     background-color: rgba(255, 255,255, 0.8);
     padding: 20px 40px;
     border-radius: 8px;
-    font-weight: 900;
+    font-weight: bold;
 }
